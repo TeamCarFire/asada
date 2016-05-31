@@ -24,10 +24,17 @@ coverage
 build/Release
 
 # Dependency directory
-node_modules
+node_modules/
+bower_components/
 
 # Optional npm cache directory
 .npm
 
 # Optional REPL history
 .node_repl_history
+
+.sass-cache/
+.idea/
+.tmp/
+dist/
+
