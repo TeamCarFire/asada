@@ -17,8 +17,10 @@
       {category: 'beef', name: 'Asada'},
       {category: 'pork', name: 'Carnitas'},
       {category: 'pork', name: 'Al Pastor'},
-      {category: 'fish', name: 'Grilled Fish'},
-      {category: 'fish', name: 'Fried Fish'},
+      {category: 'seafood', name: 'Grilled Fish'},
+      {category: 'seafood', name: 'Fried Fish'},
+      {category: 'seafood', name: 'Fried Shrimp'},
+      {category: 'seafood', name: 'Grilled Shrimp'},
       {category: 'chicken', name: 'Grilled Chicken'},
       {category: 'chicken', name: 'Fried Chicken'}
     ];
