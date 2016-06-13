@@ -31,7 +31,7 @@
       {name: 'Grilled Peppers', type: 'vegetable', value: 1, restriction: 'none'},
       {name: 'Tomatoes', type: 'vegetable', value: 2, restriction: 'none'},
       {name: 'Corn', type: 'vegetable', value: 2, restriction: 'none'},
-      {name: 'Pineapple', type: 'vegetable', value: 3, restriction: 'none'},
+      {name: 'Pineapple', type: 'vegetable', value: 3, restriction: 'Al Pastor'},
       {name: 'Jalapenos', type: 'vegetable', value: 3, restriction: 'none'},
       {name: 'Pickled Jalapenos', type: 'vegetable', value: 3, restriction: 'Al Pastor'},
       {name: 'Crema Fresca', type: 'sauce', value: 4, restriction: 'none'},
