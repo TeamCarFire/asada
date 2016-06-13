@@ -3,6 +3,7 @@
   <md-content>
     <md-content layout-gt-lg="row" layout-align="center start">
       <h1 class="md-title">Pick your taco wrapper</h1>
+      <br>
       <div layout="row">
         <div class="select-container">
           <md-input-container>
@@ -21,7 +22,7 @@
           </md-input-container>
         </div>
       </div>
-      <p ng-if="selectedWraper">You ordered a {{size.toLowerCase()}} tortilla with {{selectedWraper}} wrapper.</p>
+      <p ng-if="selectedWrapper">You ordered a {{size.toLowerCase()}} tortilla with {{selectedWrapper}} wrapper.</p>
     </md-content>
     <hr>
     <md-content layout-gt-md="row" layout-align="center start">
@@ -30,11 +31,13 @@
         <md-input-container>
           <md-select ng-model="selectedProtein">
             <md-optgroup label="Beef">
-              <md-option ng-value="meat.name" ng-repeat="meat in main.meats | filter: {category: 'beef' }">{{meat.name}}
+              <md-option ng-value="meat.name" ng-repeat="meat in main.meats | filter: {category: 'beef' }">
+                {{meat.name}}
               </md-option>
             </md-optgroup>
             <md-optgroup label="Pork">
-              <md-option ng-value="meat.name" ng-repeat="meat in main.meats | filter: {category: 'pork' }">{{meat.name}}
+              <md-option ng-value="meat.name" ng-repeat="meat in main.meats | filter: {category: 'pork' }">
+                {{meat.name}}
               </md-option>
             </md-optgroup>
             <md-optgroup label="Chicken">
@@ -49,6 +52,23 @@
             </md-optgroup>
           </md-select>
         </md-input-container>
+      </div>
+    </md-content>
+    <md-content>
+      <div ng-if="main.getRecommendedToppings(selectedProtein).length > 0">
+        <h2 class="md-title">Recommended Toppings</h2>
+        <md-list>
+          <md-list-item class="md-2-line veggie-option" ng-repeat="recommendedTopping in main.getRecommendedToppings(selectedProtein)"
+                        layout="row"
+
+          >
+            <div class="md-item-text md-whiteframe-z1" flex>
+              <md-checkbox class="md-warn md-align-top-left">
+                <h3>{{ recommendedTopping.name }}</h3>
+              </md-checkbox>
+            </div>
+          </md-list-item>
+        </md-list>
       </div>
     </md-content>
     <hr>

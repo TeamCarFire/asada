@@ -20,8 +20,10 @@
     it('should be defined', function() {
       expect(vm).toBeDefined();
     });
-    
-    it('should ')
+
+    it('.getRecommendedToppings should filter toppings', function () {
+      
+    });
 
     // it('should have a timestamp creation date', function() {
     //   expect(vm.creationDate).toEqual(jasmine.any(Number));

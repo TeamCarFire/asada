@@ -2,27 +2,105 @@
   'use strict';
 
   angular
-      .module('asada')
-      .controller('MainController', MainController);
+    .module('asada')
+    .controller('MainController', MainController);
 
   /** @ngInject */
-  function MainController() {
+  function MainController(lodash) {
     var vm = this;
 
     vm.sizes = ["small (4-inch)", "medium (8-inch)", "large (12-inch)", "insane (16-inch)"];
     vm.tortillaTypes = ['Flour', 'Corn', 'Lettuce', 'Cabbage'];
     vm.selectedWrapper = '';
 
+
+    // 4. Grilled Chicken: Onions, Grilled Onions, Grilled Peppers, Jalapenos, pickled jalapenos, guac, chili lime guac,
+    //   cilantro, tomatoes, crema Fresca, corn, and cabbage
+
     vm.meats = [
-      {category: 'beef', name: 'Asada'},
-      {category: 'pork', name: 'Carnitas'},
-      {category: 'pork', name: 'Al Pastor'},
-      {category: 'seafood', name: 'Grilled Fish'},
-      {category: 'seafood', name: 'Fried Fish'},
-      {category: 'seafood', name: 'Fried Shrimp'},
-      {category: 'seafood', name: 'Grilled Shrimp'},
-      {category: 'chicken', name: 'Grilled Chicken'},
-      {category: 'chicken', name: 'Fried Chicken'}
+      {
+        category: 'beef',
+        name: 'Asada',
+        toppings: [
+          {name: 'Onions', type: 'vegetable', value: 1},
+          {name: 'Grilled Onions', type: 'vegetable', value: 1},
+          {name: 'Grilled Peppers', type: 'vegetable', value: 1},
+          {name: 'Jalapenos', type: 'vegetable', value: 1},
+          {name: 'Pickled Jalapenos', type: 'vegetable', value: 1},
+          {name: 'Guacamole', type: 'sauce', value: 3},
+          {name: 'Chili Lime Guacamole', type: 'sauce', value: 3},
+          {name: 'Cilantro', type: 'vegetable', value: 1}
+        ]
+      },
+      {
+        category: 'pork',
+        name: 'Carnitas',
+        toppings: [
+          {name: 'Onions', type: 'vegetable', value: 1},
+          {name: 'Grilled Onions', type: 'vegetable', value: 1},
+          {name: 'Grilled Peppers', type: 'vegetable', value: 1},
+          {name: 'Pickled Jalapenos', type: 'vegetable', value: 1},
+          {name: 'Crema Fresca', type: 'sauce', value: 4},
+          {name: 'Cabbage', type: 'vegetable', value: 5},
+          {name: 'Cilantro', type: 'vegetable', value: 1}
+        ]
+      },
+      {
+        category: 'pork', name: 'Al Pastor',
+        toppings: [
+          {name: 'Onions', type: 'vegetable', value: 1},
+          {name: 'Grilled Onions', type: 'vegetable', value: 1},
+          {name: 'Jalapenos', type: 'vegetable', value: 1},
+          {name: 'Pineapple', type: 'vegetable', value: 3},
+          {name: 'Crema Fresca', type: 'sauce', value: 4},
+          {name: 'Guacamole', type: 'sauce', value: 3},
+          {name: 'Pickled Radishes', type: 'vegetable', value: 5},
+          {name: 'Cilantro', type: 'vegetable', value: 1}
+        ]
+      },
+      {
+        category: 'seafood',
+        name: 'Grilled Fish',
+        toppings: []
+      },
+      {
+        category: 'seafood',
+        name: 'Fried Fish',
+        toppings: []
+      },
+      {
+        category: 'seafood',
+        name: 'Fried Shrimp',
+        toppings: []
+      },
+      {
+        category: 'seafood',
+        name: 'Grilled Shrimp',
+        toppings: []
+      },
+      {
+        category: 'chicken',
+        name: 'Grilled Chicken',
+        toppings: [
+          {name: 'Onions', type: 'vegetable', value: 1},
+          {name: 'Grilled Onions', type: 'vegetable', value: 1},
+          {name: 'Grilled Peppers', type: 'vegetable', value: 1},
+          {name: 'Jalapenos', type: 'vegetable', value: 1},
+          {name: 'Pickled Jalapenos', type: 'vegetable', value: 1},
+          {name: 'Guacamole', type: 'sauce', value: 4},
+          {name: 'Chili Lime Guacamole', type: 'sauce', value: 4},
+          {name: 'Cilantro', type: 'vegetable', value: 5},
+          {name: 'Tomatoes', type: 'vegetable', value: 2},
+          {name: 'Crema Fresca', type: 'sauce', value: 4},
+          {name: 'Corn', type: 'vegetable', value: 2},
+          {name: 'Cabbage', type: 'vegetable', value: 5}
+        ]
+      },
+      {
+        category: 'chicken',
+        name: 'Fried Chicken',
+        toppings: []
+      }
     ];
 
     vm.toppings = [
@@ -41,128 +119,16 @@
       {name: 'Cabbage', type: 'vegetable', value: 5, restriction: 'none'},
       {name: 'Pickled Radishes', type: 'vegetable', value: 5, restriction: 'none'}
     ];
-    // vm.printSelectedToppings = printSelectedToppings;
-    // function printSelectedToppings() {
-    //   var numberOfToppings = this.selectedToppings.length;
-    //   // If there is more than one topping, we add an 'and'
-    //   // to be gramatically correct. If there are 3+ toppings
-    //   // we also add an oxford comma.
-    //   if (numberOfToppings > 1) {
-    //     var needsOxfordComma = numberOfToppings > 2;
-    //     var lastToppingConjunction = (needsOxfordComma ? ',' : '') + ' and ';
-    //     var lastTopping = lastToppingConjunction +
-    //         this.selectedToppings[this.selectedToppings.length - 1];
-    //     return this.selectedToppings.slice(0, -1).join(', ') + lastTopping;
-    //   }
-    //   return this.selectedToppings.join('');
-    // };
 
-    //
-    // vm.user = {
-    //   title: 'Developer',
-    //   email: 'ipsum@lorem.com',
-    //   firstName: '',
-    //   lastName: '',
-    //   company: 'Google',
-    //   address: '1600 Amphitheatre Pkwy',
-    //   city: 'Mountain View',
-    //   state: 'CA',
-    //   biography: 'Loves kittens, snowboarding, and can type at 130 WPM.\n\nAnd rumor has it she bouldered up Castle Craig!',
-    //   postalCode: '94043'
-    // };
-    // vm.states = ('AL AK AZ AR CA CO CT DE FL GA HI ID IL IN IA KS KY LA ME MD MA MI MN MS ' +
-    // 'MO MT NE NV NH NJ NM NY NC ND OH OK OR PA RI SC SD TN TX UT VT VA WA WV WI ' +
-    // 'WY').split(' ').map(function (state) {
-    //   return {abbrev: state};
-    // });
+    vm.getRecommendedToppings = getRecommendedToppings;
 
-    // $scope.sizes = [
-    //   "small (12-inch)",
-    //   "medium (14-inch)",
-    //   "large (16-inch)",
-    //   "insane (42-inch)"
-    // ];
-    // $scope.toppings = [
-    //   { category: 'meat', name: 'Pepperoni' },
-    //   { category: 'meat', name: 'Sausage' },
-    //   { category: 'meat', name: 'Ground Beef' },
-    //   { category: 'meat', name: 'Bacon' },
-    //   { category: 'veg', name: 'Mushrooms' },
-    //   { category: 'veg', name: 'Onion' },
-    //   { category: 'veg', name: 'Green Pepper' },
-    //   { category: 'veg', name: 'Green Olives' }
-    // ];
-    // $scope.selectedToppings = [];
-    // $scope.printSelectedToppings = function printSelectedToppings() {
-    //   var numberOfToppings = this.selectedToppings.length;
-    //   // If there is more than one topping, we add an 'and'
-    //   // to be gramatically correct. If there are 3+ toppings
-    //   // we also add an oxford comma.
-    //   if (numberOfToppings > 1) {
-    //     var needsOxfordComma = numberOfToppings > 2;
-    //     var lastToppingConjunction = (needsOxfordComma ? ',' : '') + ' and ';
-    //     var lastTopping = lastToppingConjunction +
-    //         this.selectedToppings[this.selectedToppings.length - 1];
-    //     return this.selectedToppings.slice(0, -1).join(', ') + lastTopping;
-    //   }
-    //   return this.selectedToppings.join('');
-    // };
-
+    function getRecommendedToppings(meatType) {
+      var toppings = '', result;
+      if (meatType != undefined) {
+        result = lodash.find(vm.meats, {name: meatType});
+        toppings = result.toppings;
+      }
+      return toppings;
+    }
   }
 })();
-
-// angular
-//     .module('inputBasicDemo', ['ngMaterial', 'ngMessages'])
-//     .controller('DemoCtrl', function($scope) {
-//       $scope.user = {
-//         title: 'Developer',
-//         email: 'ipsum@lorem.com',
-//         firstName: '',
-//         lastName: '',
-//         company: 'Google',
-//         address: '1600 Amphitheatre Pkwy',
-//         city: 'Mountain View',
-//         state: 'CA',
-//         biography: 'Loves kittens, snowboarding, and can type at 130 WPM.\n\nAnd rumor has it she bouldered up Castle Craig!',
-//         postalCode: '94043'
-//       };
-//       $scope.states = ('AL AK AZ AR CA CO CT DE FL GA HI ID IL IN IA KS KY LA ME MD MA MI MN MS ' +
-//       'MO MT NE NV NH NJ NM NY NC ND OH OK OR PA RI SC SD TN TX UT VT VA WA WV WI ' +
-//       'WY').split(' ').map(function(state) {
-//         return {abbrev: state};
-//       });
-//     })
-//     .config(function($mdThemingProvider) {
-//       // Configure a dark theme with primary foreground yellow
-//       $mdThemingProvider.theme('docs-dark', 'default')
-//           .primaryPalette('yellow')
-//           .dark();
-//     });
-
-
-// vm.awesomeThings = [];
-// vm.classAnimation = '';
-// vm.creationDate = 1464624181708;
-// vm.showToastr = showToastr;
-//
-// activate();
-//
-// function activate() {
-//   getWebDevTec();
-//   $timeout(function() {
-//     vm.classAnimation = 'rubberBand';
-//   }, 4000);
-// }
-//
-// function showToastr() {
-//   toastr.info('Fork <a href="https://github.com/Swiip/generator-gulp-angular" target="_blank"><b>generator-gulp-angular</b></a>');
-//   vm.classAnimation = '';
-// }
-//
-// function getWebDevTec() {
-//   vm.awesomeThings = webDevTec.getTec();
-//
-//   angular.forEach(vm.awesomeThings, function(awesomeThing) {
-//     awesomeThing.rank = Math.random();
-//   });
-// }
