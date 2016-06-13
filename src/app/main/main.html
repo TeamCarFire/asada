@@ -16,13 +16,15 @@
         <div class="select-container">
           <md-input-container>
             <label>Wrapper Type</label>
-            <md-select ng-model="selectedWraper">
+            <md-select ng-model="selectedWrapper">
               <md-option ng-value="type" ng-repeat="type in main.tortillaTypes ">{{type}}</md-option>
             </md-select>
           </md-input-container>
         </div>
       </div>
-      <p ng-if="selectedWrapper">You ordered a {{size.toLowerCase()}} tortilla with {{selectedWrapper}} wrapper.</p>
+      <div layout="row">
+        <p ng-if="selectedWrapper">You ordered a {{size.toLowerCase()}} tortilla with {{selectedWrapper}} wrapper.</p>
+      </div>
     </md-content>
     <hr>
     <md-content layout-gt-md="row" layout-align="center start">
@@ -58,7 +60,8 @@
       <div ng-if="main.getRecommendedToppings(selectedProtein).length > 0">
         <h2 class="md-title">Recommended Toppings</h2>
         <md-list>
-          <md-list-item class="md-2-line veggie-option" ng-repeat="recommendedTopping in main.getRecommendedToppings(selectedProtein)"
+          <md-list-item class="md-2-line veggie-option"
+                        ng-repeat="recommendedTopping in main.getRecommendedToppings(selectedProtein)"
                         layout="row"
 
           >
